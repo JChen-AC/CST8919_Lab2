@@ -12,32 +12,65 @@ Accept: application/json
 
 # POST login
 POST http://localhost:5010/login
-Content-Type: application/json
+Content-Type: application/x-www-form-urlencoded
 
-{
-  "email": "user@email.com",
-  "password": "password"
-}
+email=user@email.com&password=password
+
 
 ###
 
 # POST Failed logined 
 POST http://localhost:5010/login
-Content-Type: application/json
+Content-Type: application/x-www-form-urlencoded
 
-{
-  "email": "user@email.com",
-  "password": "fail"
-}
+email=user@email.com&password=fail
+
 
 ###
 
 # POST Failed logined email
 POST http://localhost:5010/login
-Content-Type: application/json
+Content-Type: application/x-www-form-urlencoded
 
-{
-  "email": "user@fail.com",
-  "password": "password"
-}
+email=user@fail.com&password=fail
+
+
+###
+# Cloud test
+
+
+# GET health check
+GET https://cst8919lab2app2-ebg9ctgdfef2ewft.canadacentral-01.azurewebsites.net/health
+Accept: application/json
+
+###
+
+# GET health check
+GET https://cst8919lab2app2-ebg9ctgdfef2ewft.canadacentral-01.azurewebsites.net/dashboard
+Accept: application/json
+
+###
+
+# POST login
+POST https://cst8919lab2app2-ebg9ctgdfef2ewft.canadacentral-01.azurewebsites.net/login
+Content-Type: application/x-www-form-urlencoded
+
+email=user@email.com&password=password
+
+###
+
+# POST Failed logined 
+POST https://cst8919lab2app2-ebg9ctgdfef2ewft.canadacentral-01.azurewebsites.net/login
+Content-Type: application/x-www-form-urlencoded
+
+email=user@email.com&password=fail
+
+
+###
+
+# POST Failed logined email
+POST https://cst8919lab2app2-ebg9ctgdfef2ewft.canadacentral-01.azurewebsites.net/login
+Content-Type: application/x-www-form-urlencoded
+
+email=user@fail.com&password=fail
 
