@@ -1,9 +1,11 @@
 import os
 from flask import Flask, jsonify, request, render_template, redirect, url_for
 from dotenv import load_dotenv
+import logging
 
 load_dotenv()
 app = Flask(__name__)
+app.logger.setLevel(logging.INFO)
 
 @app.route("/health", methods=["GET"])
 def health():
@@ -25,7 +27,7 @@ def login():
             app.logger.info("Status:200, Login Successful redirecting to dashboard")
             return redirect(url_for("dashboard"))
         else:
-            app.logger.warning("Status:400, Login Failed")
+            app.logger.warning("Status:401, Login Failed")
             return render_template("login_page.html", error="Invalid credentials")
         
 @app.route("/dashboard")
