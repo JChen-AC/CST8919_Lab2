@@ -12,21 +12,18 @@
 
 ## Demo Video
 
-
+https://youtu.be/q9on3fHQTnc
 
 ---
 
 ## Technical Analysis
 
 ### What I learned during this lab
-Through this lab I learned a few things. The first thing that I learned was how to pass console logs into Azure. Through enabling AppServiceConsoleLogs on the ... I was able to see the logs that I outputted using the Logger library in Azure Logs Analytics. I found this extremely helpful as it allows me to see what is happening within the application and how to debug it. 
+Through this lab I learned a few things. The first thing that I learned was how to pass console logs into Azure. Through enabling AppServiceConsoleLogs on the Diagnostic Settings in the App Service, I was able to see the logs that I outputted using the Logger library in Azure Logs Analytics. I found this extremely helpful as it allows me to see what is happening within the application and how to debug it. 
 
 The next thing I learned was about to write basic KQL queries and their ability to filter logs out. This is extremely useful especially during debugging as Azure Log Analytics gets a lot of logs and data, so being able to filter them and select specific sources would be useful to debugging to help isolate where the issue is coming from. 
 
 The third thing that I learned was how to create alerts that use custom scripts and how the rolling window works for real time logs and aggregation. 
-
-## Challenges faced during the lab 
-
 
 ## Ways to improve detection log in a real world scenario 
 
@@ -36,9 +33,8 @@ Another improvement would be adding the IP-address or geo-location to the query.
 
 ## KQL query with explanation 
 """ 
-
+AppServiceConsoleLogs
+| where ResultDescription has "Status:401"
 
 """
-This is a very basic KQL query, it uses AppServiceConsoleLogs to get the logs from the server and imports them into query editor? Then it feeds it into the following query 
-
-which will look through the messages and filters them to only disply the messages with "Status:401" which is a custom message that I added to the Flask server to represent failed login attempts. 
+This is a very basic KQL query, it uses AppServiceConsoleLogs to get the logs from the server and imports them into Log Analytics Workspace. Then it feeds it into the above query which will look through the messages and filters them to only display the messages with "Status:401" which is a custom message that I added to the Flask server to represent failed login attempts. 
