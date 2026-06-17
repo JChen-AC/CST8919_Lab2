@@ -32,9 +32,12 @@ One improvement to the detection log for a real world log in scenario is to have
 Another improvement would be adding the IP-address or geo-location to the query. Although this would involve updating the log message being sent by Flask server. The reason for this is to add another check for suspicious activity as if one user always logs in at one location and then they suddenly log in at another location then their account might have gotten hacked. Alternatively, it could check the time between logins and their location as if a user logs in at one location, then a few minutes login in another then the user might have gotten hacked. If the user got hacked, then it can automatically notify the user and prompt them for a confirmation or send a 2nd method for authentication. 
 
 ## KQL query with explanation 
-""" 
+
+```
 AppServiceConsoleLogs
 | where ResultDescription has "Status:401"
+``` 
 
-"""
+
+
 This is a very basic KQL query, it uses AppServiceConsoleLogs to get the logs from the server and imports them into Log Analytics Workspace. Then it feeds it into the above query which will look through the messages and filters them to only display the messages with "Status:401" which is a custom message that I added to the Flask server to represent failed login attempts. 
